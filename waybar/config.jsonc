@@ -1,0 +1,86 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-top": 10,
+  "margin-left": 20,
+  "margin-right": 20,
+  "height": 36,
+  "spacing": 8,
+
+  // Module Placement
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock", "mpris"],
+  "modules-right": ["pulseaudio", "battery", "group/power"],
+  // Module Configurations
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "default": "○",
+    },
+  },
+
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "󰎆",
+      "youtube-music": "",
+    },
+    "status-icons": {
+      "paused": "󰏤",
+    },
+    "max-length": 45,
+    "tooltip": false,
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "on-click": "pavucontrol",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "group/power": {
+    "orientation": "horizontal",
+    "modules": ["custom/logout", "custom/reboot", "custom/shutdown"],
+  },
+
+  "custom/logout": {
+    "format": "󰍃",
+    "tooltip": false,
+    "on-click": "loginctl terminate-user $USER",
+  },
+  "custom/reboot": {
+    "format": "󰑓",
+    "tooltip": false,
+    "on-click": "systemctl reboot",
+  },
+
+  "custom/shutdown": {
+    "format": "󰐥",
+    "tooltip": false,
+    "on-click": "systemctl poweroff",
+  },
+}

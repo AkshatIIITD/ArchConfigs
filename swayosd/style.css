@@ -1,0 +1,59 @@
+window {
+  background: transparent;
+}
+
+/* The main pill container */
+#osd {
+  background-color: rgba(15, 15, 15, 0.8);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 12px 24px;
+  margin-bottom: 40px; /* Floats it nicely above the bottom edge */
+}
+
+/* The icon */
+image {
+  color: #ffffff;
+  margin-right: 12px;
+}
+
+/* The progress bar track */
+progressbar trough {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  min-height: 8px;
+}
+
+/* The filled portion of the volume/brightness bar */
+progressbar progress {
+  background-color: #00ffff;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 1. Target the main track container */
+levelbar trough {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* 2. Target the exact hierarchy for filled blocks */
+levelbar > trough > block.filled,
+levelbar > trough > block.low,
+levelbar > trough > block.high,
+levelbar > trough > block.full {
+  background: none !important;
+  background-color: #00ffff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* 3. Target the exact hierarchy for empty blocks */
+levelbar > trough > block.empty {
+  background: none !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: none !important;
+  border-radius: 999px !important;
+}

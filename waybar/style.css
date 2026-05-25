@@ -1,0 +1,114 @@
+* {
+  /* Use the patched font you installed earlier for perfect icon rendering */
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  /* Completely transparent root window so the bar appears floating */
+  background: transparent;
+  color: #ffffff;
+}
+
+/* Base style for all module pill containers */
+.modules-left > widget > box,
+.modules-center > widget > box,
+.modules-right > widget > box,
+.power {
+  background-color: rgba(15, 15, 15, 0.7);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 2px 14px;
+  margin-bottom: 0px;
+}
+
+/* Workspace Button Styling */
+#workspaces button {
+  color: #888888;
+  padding: 0 6px;
+  transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #00ffff;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+#workspaces button:hover {
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* Spacing out the right modules */
+#pulseaudio {
+  margin-right: 12px;
+  color: #00ffff;
+}
+
+/* Media Player */
+#mpris {
+  color: #00ffff;
+  margin-left: 10px;
+}
+#mpris.paused {
+  color: #888888;
+}
+
+#battery {
+  color: #00ffff;
+}
+
+#battery.warning {
+  color: #ffaa00;
+}
+
+#battery.critical {
+  color: #ff3333;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ff3333;
+    color: #ffffff;
+  }
+}
+
+/* Individual Power Menu Buttons */
+#custom-logout,
+#custom-reboot,
+#custom-shutdown {
+  padding: 0 6px;
+  transition: all 0.2s ease;
+}
+
+/* Give the power buttons a margin to separate them from the battery */
+#custom-logout {
+  margin-left: 10px;
+  color: #a6da95; /* Soft Green for safe session exit */
+}
+
+#custom-reboot {
+  color: #eed49f; /* Soft Yellow for system warm reset */
+}
+
+#custom-shutdown {
+  color: #ee99a0; /* Soft Red for power off */
+}
+
+/* Interactive Hover Effects */
+#custom-logout:hover,
+#custom-reboot:hover,
+#custom-shutdown:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
