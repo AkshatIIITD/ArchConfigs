@@ -4,12 +4,20 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-	output = "",
+	output = "eDP-1",
 	mode = "preferred",
-	position = "auto",
+	position = "0x0",
 	scale = "auto",
 })
 
+-- 2. Your TV
+-- Forced to 1080p at 60Hz to prevent the 4K/30Hz lag trap
+hl.monitor({
+	output = "HDMI-A-3",
+	mode = "2560x1440@59.95",
+	position = "1920x0",
+	scale = 1,
+})
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
