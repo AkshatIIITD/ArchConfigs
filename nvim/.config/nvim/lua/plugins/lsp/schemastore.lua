@@ -40,7 +40,16 @@ return {
               enable = false, -- must be disabled
               url = "",
             },
-            schemas = require("schemastore").yaml.schemas(),
+            schemas = require("schemastore").yaml.schemas({
+              extra = {
+                {
+                  name = "Kubernetes 1.32",
+                  description = "Core Kubernetes resources",
+                  fileMatch = { "**/k8s/**/*.yaml", "**/manifests/**/*.yaml", "**/*.k8s.yaml" },
+                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json",
+                },
+              },
+            }),
           },
           redhat = { telemetry = { enabled = false } },
         },

@@ -7,6 +7,7 @@ return {
       { "<leader>c", group = "code" },
       { "<leader>w", group = "windows" },
       { "<leader>t", group = "toggle" },
+      { "<leader>g", group = "git" },
     },
   },
 }

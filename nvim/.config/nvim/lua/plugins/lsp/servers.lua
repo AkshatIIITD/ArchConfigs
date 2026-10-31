@@ -51,6 +51,8 @@ return {
         "jsonls",
         "yamlls",
         "marksman",
+        "dockerls",
+        "docker_compose_language_service",
 
         -- Python and Go
         "basedpyright",

@@ -141,7 +141,7 @@ return {
         bash = { "shellcheck" },
 
         markdown = { "markdownlint" },
-
+        dockerfile = { "hadolint" },
         yaml = { "yamllint" },
 
         -- Global linters: uncomment to run on every filetype.

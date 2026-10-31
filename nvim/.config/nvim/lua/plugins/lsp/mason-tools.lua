@@ -30,6 +30,7 @@ return {
         "shellcheck", -- Shell/Bash
         "markdownlint", -- Markdown
         "yamllint", -- YAML
+        "hadolint", -- Dockerfile linter
       },
 
       -- Auto-update tools on startup
