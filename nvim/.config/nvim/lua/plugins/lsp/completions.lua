@@ -11,10 +11,14 @@ return {
       keymap = {
         preset = "none",
         ["<CR>"] = { "accept", "fallback" },
-        ["<Tab>"] = { "accept", "fallback" },
+        ["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
         ["<C-space>"] = { "show", "hide" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
       },
 
       appearance = {
@@ -43,16 +47,13 @@ return {
       },
 
       sources = {
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100, -- Pushes Neovim API suggestions to the top
-          },
-          buffer = {
-            min_keyword_length = 3,
-          },
+        default = { "lsp", "path", "snippets", "buffer" },
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+        },
+        providers = { -- unchanged
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+          buffer = { min_keyword_length = 3 },
         },
       },
 

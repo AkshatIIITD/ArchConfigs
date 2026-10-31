@@ -18,8 +18,8 @@
 --
 -- ─── WHAT THIS FILE ADDS ──────────────────────────────────────────────────────
 --
---   gd             → go to definition (telescope picker)
---   gD             → go to declaration
+--   grd             → go to definition (telescope picker)
+--   grD             → go to declaration
 --   <leader>ch     → toggle inlay hints
 --
 --   Per-server, checked with supports_method():
@@ -33,6 +33,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     config = function()
       -- ── 1. Global capabilities ──────────────────────────────────────────────
       -- Applied to every LSP server via the "*" wildcard.
@@ -67,7 +68,6 @@ return {
 
           map("grd", vim.lsp.buf.definition, "Go to Definition")
           map("grD", vim.lsp.buf.declaration, "Go to Declaration")
-          map("grt", vim.lsp.buf.type_definition, "Go to Declaration")
 
           -- ── Copy Diagnostics ─────────────────────────────────────────────────────
           map("<leader>cy", function()
@@ -123,7 +123,7 @@ return {
           -- ── Document highlight ───────────────────────────────────────────────
           -- Cursor rests on a symbol → all its references in the buffer glow.
           -- Clears automatically on cursor move. Visual only, no keymap needed.
-          -- Controlled by updatetime option (200ms in options.lua).
+          -- Controlled by updatetime option (250ms in options.lua).
           if client:supports_method("textDocument/documentHighlight") then
             local hl = vim.api.nvim_create_augroup("UserLspHighlight", { clear = false })
             vim.api.nvim_clear_autocmds({ group = hl, buffer = event.buf })
@@ -154,18 +154,6 @@ return {
           if client:supports_method("textDocument/foldingRange") then
             local win = vim.api.nvim_get_current_win()
             vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-          end
-
-          -- ── formatexpr ──────────────────────────────────────────────────────
-          -- Wires the `gq` motion to use LSP formatting instead of Vim's default
-          -- internal formatter. Useful for: gq inside a function, gqq on a line,
-          -- gq in visual mode to reformat a selection.
-          --
-          -- This is NOT format-on-save. That is conform.nvim's job (formatting.lua).
-          -- These two do not conflict — conform runs on BufWritePre,
-          -- formatexpr only runs when you explicitly press gq.
-          if client:supports_method("textDocument/formatting") then
-            vim.bo[event.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
           end
         end,
       })

@@ -45,6 +45,7 @@ return {
         -- Config / scripting
         "lua_ls",
         "bashls",
+        "helm_ls",
 
         -- Data formats
         "jsonls",

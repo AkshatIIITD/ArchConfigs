@@ -26,25 +26,23 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 -- Loop to create Alt+1 through Alt+9 keymaps for tab navigation
 for i = 1, 9 do
   vim.keymap.set("n", "<M-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })
+  vim.keymap.set("x", "<", "<gv", { desc = "Indent left, keep selection" })
+  vim.keymap.set("x", ">", ">gv", { desc = "Indent right, keep selection" })
 end
 
 -- ─── CLEAR SCREEN / HIGHLIGHTS ────────────────────────────────────────────────
-vim.keymap.set(
-  "n",
-  "<C-A-L>",
-  "<cmd>nohlsearch<CR><cmd>diffupdate<CR><cmd>normal! <C-l><CR>",
-  { desc = "Clear screen and search highlights" }
-)
+-- ─── CLEAR SEARCH HIGHLIGHT ───────────────────────────────────────────────────
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 -- copy & paste
-vim.keymap.set({ "n", "x" }, "<Leader>y", '"+y', { silent = true }) -- Copy to system clipboard in normal/visual mode
-vim.keymap.set({ "n", "x" }, "<Leader>p", '"+p', { silent = true }) -- Paste from system clipboard in normal/visual mode
-vim.keymap.set({ "n", "x" }, "<Leader>d", '"+d', { silent = true }) -- Copy to system clipboard in normal/visual mode
+vim.keymap.set({ "n", "x" }, "<Leader>y", '"+y', { silent = true, desc = "Yank to system clipboard" })
+vim.keymap.set({ "n", "x" }, "<Leader>p", '"+p', { silent = true, desc = "Paste from system clipboard" })
+vim.keymap.set({ "n", "x" }, "<Leader>d", '"+d', { silent = true, desc = "Cut to system clipboard" })
 
 -- Normal mode: <leader>/ triggers gcc (Line comment)
 vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle Comment Line" })
 
 -- Visual mode: <leader>/ triggers gc (Selection comment)
-vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Toggle Comment Selection" })
+vim.keymap.set("x", "<leader>/", "gc", { remap = true, desc = "Toggle Comment Selection" })
 
 -- Command-line menu navigation (C-j,k overridden by blink.nvim)
 -- vim.keymap.set("c", "<C-j>", "<C-n>", { desc = "Command line next item/history" })

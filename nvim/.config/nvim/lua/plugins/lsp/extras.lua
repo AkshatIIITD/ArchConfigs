@@ -5,7 +5,7 @@
 -- lazydev.nvim
 --   Dynamically configures lua_ls workspace libraries for Neovim config files.
 --   Replaces the static workspace.library approach. Only loads on lua filetypes.
---   Has a blink.cmp integration (see completion.lua for the "lazydev" source).
+--   Has a blink.cmp integration (see completions.lua for the "lazydev" source).
 --   NOTE: do not set workspace.library in after/lsp/lua_ls.lua — lazydev owns it.
 --
 -- nvim-lsp-file-operations

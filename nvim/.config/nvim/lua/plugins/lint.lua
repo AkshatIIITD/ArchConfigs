@@ -135,7 +135,7 @@ return {
 
         python = { "ruff" },
 
-        go = { "golangci-lint" },
+        go = { "golangcilint" },
 
         sh = { "shellcheck" },
         bash = { "shellcheck" },
@@ -177,7 +177,7 @@ return {
 
         -- golangci-lint without config runs all default analyzers — very slow.
         -- Only activate when the project has explicitly configured it.
-        ["golangci-lint"] = {
+        ["golangcilint"] = {
           ".golangci.yaml",
           ".golangci.yml",
           ".golangci.toml",

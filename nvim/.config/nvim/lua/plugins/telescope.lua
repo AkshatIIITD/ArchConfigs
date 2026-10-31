@@ -34,6 +34,11 @@ return {
     },
 
     keys = {
+      {
+        "<leader>fn",
+        b("find_files", { cwd = vim.fn.stdpath("config") }),
+        desc = "Neovim config files",
+      },
       -- ── Files ─────────────────────────────────────────────────────────────────
       -- Normal files (respects .gitignore — the common case)
       { "<leader>ff", b("find_files"), desc = "Find files" },
@@ -81,7 +86,7 @@ return {
       -- ── LSP pickers (deliberate actions, NOT motion overrides) ────────────────
       -- These are "open a picker" keymaps that the user explicitly invokes.
       -- gd / gr / gI / gy are NOT here — those override vim defaults and must
-      -- only activate when LSP is attached. Set them in LspAttach in lsp.lua.
+      -- only activate when LSP is attached. Set them in LspAttach in attach.lua.
       {
         "<leader>fs",
         b("lsp_document_symbols"),
@@ -221,10 +226,6 @@ return {
               ["<C-q>"] = actions.send_selected_to_qflist,
               -- Send ALL results to quickfix (no selection needed)
               ["<M-q>"] = actions.send_to_qflist,
-              -- Open in splits / new tab
-              ["<C-s>"] = actions.select_horizontal,
-              ["<C-v>"] = actions.select_vertical,
-              ["<C-t>"] = actions.select_tab,
               -- Close picker
               ["<Esc>"] = actions.close,
               -- Scroll the preview pane while staying in the prompt
@@ -232,11 +233,6 @@ return {
               ["<C-u>"] = actions.preview_scrolling_up,
               -- Show all available keymaps for the current picker
               ["<C-h>"] = "which_key",
-            },
-            n = {
-              ["q"] = actions.close,
-              ["<Esc>"] = actions.close,
-              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },
         },
@@ -250,9 +246,6 @@ return {
             -- No --exclude .git: already excluded by gitignore.
             find_command = vim.fn.executable("fd") == 1 and { "fd", "--type", "f", "--color", "never" } or nil,
           },
-
-          lsp_references = { show_line = false },
-          lsp_definitions = { show_line = false },
 
           buffers = {
             sort_mru = true,

@@ -48,6 +48,10 @@
 -- Quick check if a formatter is available:
 --   :ConformInfo
 
+-- Filetypes that are never formatted on save (manual <leader>cf still works).
+-- Prettier reindents Kubernetes YAML and breaks Helm's {{ }} templates.
+local skip_ft = { yaml = true, helm = true }
+
 return {
   {
     "stevearc/conform.nvim",
@@ -55,6 +59,10 @@ return {
     -- Also load the :ConformInfo command on demand.
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
+
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
 
     keys = {
       {
@@ -134,10 +142,6 @@ return {
         -- C / C++
         c = { "clang_format" },
         cpp = { "clang_format" },
-
-        -- Fallback: for any filetype with no formatter listed, trim trailing
-        -- whitespace. Does not conflict with lsp_format = "fallback".
-        ["_"] = { "trim_whitespace" },
       },
 
       -- ── Default format options ─────────────────────────────────────────────
@@ -146,34 +150,27 @@ return {
         lsp_format = "fallback", -- use LSP if no conform formatter matches
       },
 
-      -- Set this to true to allow conform to handle the gq formatting motion
-      -- instead of Neovim's internal formatting engine.
-      format_expr = true,
-
       -- ── Format on save ─────────────────────────────────────────────────────
       -- Function form: return nil to skip, return opts table to format.
       format_on_save = function(bufnr)
-        -- Global toggle: set via <leader>tf keymap above
-        if vim.g.disable_autoformat then
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
 
-        -- Buffer-local toggle: set with :lua vim.b.disable_autoformat = true
-        if vim.b[bufnr].disable_autoformat then
-          return
+        -- compound filetypes such as "yaml.helm-values" are split on "."
+        for part in vim.bo[bufnr].filetype:gmatch("[^.]+") do
+          if skip_ft[part] then
+            return
+          end
         end
 
-        -- Skip files larger than 1MB — formatting large files blocks the UI
         local max_size = 1024 * 1024
         local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
         if ok and stat and stat.size > max_size then
           return
         end
 
-        return {
-          timeout_ms = 500,
-          lsp_format = "fallback",
-        }
+        return { timeout_ms = 1000, lsp_format = "fallback" }
       end,
 
       -- ── Formatter overrides ────────────────────────────────────────────────
