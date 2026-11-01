@@ -45,7 +45,13 @@ return {
                 {
                   name = "Kubernetes 1.32",
                   description = "Core Kubernetes resources",
-                  fileMatch = { "**/k8s/**/*.yaml", "**/manifests/**/*.yaml", "**/*.k8s.yaml" },
+                  fileMatch = {
+                    "**/deployment.yaml",
+                    "**/service.yaml",
+                    "**/pvc.yaml",
+                    "**/statefulset.yaml",
+                    "**/configmap.yaml",
+                  },
                   url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json",
                 },
               },
