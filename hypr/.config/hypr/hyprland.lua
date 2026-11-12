@@ -199,6 +199,10 @@ hl.bind(
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 
+-- Notifications (mako): dismiss the top one, toggle do-not-disturb
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("makoctl dismiss"))
+hl.bind(secondMod .. " + ESCAPE", hl.dsp.exec_cmd("makoctl mode -t do-not-disturb"))
+
 -- Volume and brightness keys (routed through SwayOSD); hold to repeat
 hl.bind(
 	"XF86AudioRaiseVolume",

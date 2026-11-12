@@ -58,6 +58,12 @@ SUPER is the main modifier. Keep this table in sync with `hyprland.lua`.
 | SUPER + L | Lock screen |
 | SUPER + SHIFT + CTRL + Q | Exit Hyprland |
 
+### Notifications
+| Keys | Action |
+|---|---|
+| SUPER + ESCAPE | Dismiss the top notification |
+| SUPER + SHIFT + ESCAPE | Toggle do-not-disturb (critical notifications still show) |
+
 ### Media keys (also work while locked)
 | Keys | Action |
 |---|---|
