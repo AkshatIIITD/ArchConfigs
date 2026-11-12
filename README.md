@@ -1,7 +1,7 @@
 First clone this repository, then run this command in the base folder of the repo:
 
 ```
-stow -t ~ fastfetch hypr kitty mako rofi swayosd waybar misc nvim
+stow -t ~ fastfetch hypr kitty mako swayosd waybar misc nvim
 ```
 
 Note that for neovim, install tree-sitter-cli and base-devel
@@ -11,8 +11,8 @@ Note that for neovim, install tree-sitter-cli and base-devel
 The Hyprland config (`hypr/.config/hypr/hyprland.lua`) also expects:
 
 - `brightnessctl` for the idle dim step in hypridle
-- `hyprshutdown` (optional) for a graceful exit. Without it, the exit bind quits Hyprland straight away.
-- `anyrun` as the launcher (the `rofi` package is kept but is not bound to a key)
+- `hyprshutdown` for a graceful exit, used by the exit bind and the waybar power buttons (logout/reboot/shutdown)
+- `anyrun` as the launcher
 - `grim`, `slurp`, `wl-clipboard`, `hyprpicker`, `playerctl`, `swayosd`
 
 ## Keybinds
