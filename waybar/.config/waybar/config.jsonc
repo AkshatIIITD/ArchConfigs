@@ -7,11 +7,33 @@
   "height": 36,
   "spacing": 8,
 
-  // Module Placement
+  // Module placement: each group renders as one pill (see style.css)
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock", "mpris"],
-  "modules-right": ["pulseaudio", "battery", "group/power"],
-  // Module Configurations
+  "modules-center": ["group/center"],
+  "modules-right": ["group/status", "group/power"],
+
+  // --- Groups ---
+  "group/center": {
+    "orientation": "horizontal",
+    "modules": ["clock", "mpris"],
+  },
+  "group/status": {
+    "orientation": "horizontal",
+    "modules": ["tray", "pulseaudio", "battery"],
+  },
+  // Power drawer: click the icon to reveal logout/reboot/shutdown (2 clicks for any action)
+  "group/power": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "power-child",
+      "transition-left-to-right": false,
+      "click-to-reveal": true,
+    },
+    "modules": ["custom/power", "custom/logout", "custom/reboot", "custom/shutdown"],
+  },
+
+  // --- Modules ---
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -22,6 +44,11 @@
       "3": "III",
       "4": "IV",
       "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X",
       "default": "○",
     },
   },
@@ -35,13 +62,18 @@
     "format-paused": "{status_icon} <i>{dynamic}</i>",
     "player-icons": {
       "default": "󰎆",
-      "youtube-music": "",
+      "youtube-music": "",
     },
     "status-icons": {
       "paused": "󰏤",
     },
     "max-length": 45,
     "tooltip": false,
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -51,36 +83,35 @@
     },
     "on-click": "pavucontrol",
   },
-
   "battery": {
     "states": {
       "warning": 30,
       "critical": 15,
     },
-    "format": "{icon}  {capacity}%",
+    "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰚥 {capacity}%",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   },
-  "group/power": {
-    "orientation": "horizontal",
-    "modules": ["custom/logout", "custom/reboot", "custom/shutdown"],
-  },
 
+  // Power actions go through hyprshutdown: apps close cleanly first
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": false,
+  },
   "custom/logout": {
     "format": "󰍃",
     "tooltip": false,
-    "on-click": "loginctl terminate-user $USER",
+    "on-click": "hyprshutdown -t 'Logging out...'",
   },
   "custom/reboot": {
     "format": "󰑓",
     "tooltip": false,
-    "on-click": "systemctl reboot",
+    "on-click": "hyprshutdown -t 'Restarting...' -p 'systemctl reboot'",
   },
-
   "custom/shutdown": {
     "format": "󰐥",
     "tooltip": false,
-    "on-click": "systemctl poweroff",
+    "on-click": "hyprshutdown -t 'Shutting down...' -p 'systemctl poweroff'",
   },
 }

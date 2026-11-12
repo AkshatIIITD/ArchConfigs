@@ -1,5 +1,7 @@
+/* Theme: bg #0f0f0f, fg #ffffff, accent #00ffff, muted #888888,
+   warning #ffaa00, critical #ff3333 */
+
 * {
-  /* Use the patched font you installed earlier for perfect icon rendering */
   font-family: "JetBrainsMono Nerd Font", sans-serif;
   font-size: 13px;
   font-weight: bold;
@@ -9,24 +11,31 @@
 }
 
 window#waybar {
-  /* Completely transparent root window so the bar appears floating */
+  /* Transparent root window so the pills appear to float */
   background: transparent;
   color: #ffffff;
 }
 
-/* Base style for all module pill containers */
+/* Pills: every top-level module/group box in each section */
 .modules-left > widget > box,
 .modules-center > widget > box,
-.modules-right > widget > box,
-.power {
+.modules-right > widget > box {
   background-color: rgba(15, 15, 15, 0.7);
   border: 2px solid rgba(0, 255, 255, 0.3);
   border-radius: 12px;
-  padding: 2px 14px;
-  margin-bottom: 0px;
+  padding: 2px 10px;
 }
 
-/* Workspace Button Styling */
+/* Spacing between modules inside a pill */
+#clock,
+#mpris,
+#tray,
+#pulseaudio,
+#battery {
+  padding: 0 6px;
+}
+
+/* --- Workspaces --- */
 #workspaces button {
   color: #888888;
   padding: 0 6px;
@@ -44,23 +53,27 @@ window#waybar {
   box-shadow: none;
 }
 
-/* Spacing out the right modules */
-#pulseaudio {
-  margin-right: 12px;
+/* --- Media --- */
+#mpris {
   color: #00ffff;
 }
 
-/* Media Player */
-#mpris {
-  color: #00ffff;
-  margin-left: 10px;
-}
 #mpris.paused {
   color: #888888;
 }
 
+/* --- Status --- */
+#tray.empty {
+  padding: 0;
+}
+
+#pulseaudio,
 #battery {
   color: #00ffff;
+}
+
+#pulseaudio.muted {
+  color: #888888;
 }
 
 #battery.warning {
@@ -83,32 +96,25 @@ window#waybar {
   }
 }
 
-/* Individual Power Menu Buttons */
+/* --- Power drawer: muted until hovered --- */
+#custom-power,
 #custom-logout,
 #custom-reboot,
 #custom-shutdown {
+  color: #888888;
   padding: 0 6px;
   transition: all 0.2s ease;
 }
 
-/* Give the power buttons a margin to separate them from the battery */
-#custom-logout {
-  margin-left: 10px;
-  color: #a6da95; /* Soft Green for safe session exit */
+#custom-power:hover,
+#custom-logout:hover {
+  color: #00ffff;
 }
 
-#custom-reboot {
-  color: #eed49f; /* Soft Yellow for system warm reset */
+#custom-reboot:hover {
+  color: #ffaa00;
 }
 
-#custom-shutdown {
-  color: #ee99a0; /* Soft Red for power off */
-}
-
-/* Interactive Hover Effects */
-#custom-logout:hover,
-#custom-reboot:hover,
 #custom-shutdown:hover {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  color: #ff3333;
 }
