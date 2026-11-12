@@ -3,6 +3,8 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+
+-- Built-in laptop panel
 hl.monitor({
 	output = "eDP-1",
 	mode = "preferred",
@@ -10,14 +12,14 @@ hl.monitor({
 	scale = "auto",
 })
 
--- 2. Your TV
--- Forced to 1080p at 60Hz to prevent the 4K/30Hz lag trap
+-- Fallback for any other screen (e.g. the TV over HDMI): native mode, placed automatically
 hl.monitor({
-	output = "HDMI-A-3",
-	mode = "2560x1440@59.95",
-	position = "1920x0",
-	scale = 1,
+	output = "",
+	mode = "preferred",
+	position = "auto",
+	scale = "auto",
 })
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
