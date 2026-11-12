@@ -1,6 +1,9 @@
+# https://github.com/emersion/mako/blob/master/doc/mako.5.scd
+# Theme: bg #0f0f0f, fg #ffffff, accent #00ffff (same as waybar/swayosd)
+
 # --- Visuals ---
 font=JetBrainsMono Nerd Font 11
-background-color=#151515ee
+background-color=#0f0f0fee
 text-color=#ffffff
 border-color=#00ffff
 border-radius=12
@@ -10,12 +13,25 @@ border-size=2
 width=350
 margin=20
 padding=15
+max-visible=5
 default-timeout=5000
-layer=overlay
+# "top" keeps notifications below fullscreen apps (video, games); "overlay" would cover them
+layer=top
 anchor=top-right
 
-# --- Action Colors ---
-[urgency=high]
+# --- Urgency styles (mako levels are low / normal / critical) ---
+[urgency=low]
+border-color=#888888
+
+[urgency=critical]
 border-color=#ff3333
 background-color=#330000ee
 default-timeout=0
+
+# --- Do not disturb (toggle: makoctl mode -t do-not-disturb) ---
+# Hide everything except critical notifications
+[mode=do-not-disturb]
+invisible=1
+
+[mode=do-not-disturb urgency=critical]
+invisible=0
