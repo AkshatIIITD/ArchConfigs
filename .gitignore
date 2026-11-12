@@ -1,2 +1,6 @@
 **/lua/config/ai_local.lua
 **/lazy-lock.json
+
+# Claude Code (machine-local)
+/CLAUDE.md
+/.claude/
