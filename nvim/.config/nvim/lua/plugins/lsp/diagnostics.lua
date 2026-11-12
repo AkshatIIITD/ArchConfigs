@@ -9,7 +9,8 @@ return {
       preset = "modern",
       options = {
         show_source = { enabled = true, if_many = true },
-        multilines = { enabled = true, always_show = false },
+        --multilines = { enabled = true, always_show = false },
+        multilines = { enabled = false },
         multiple_diag_under_cursor = true,
         show_all_diags_on_cursorline = false,
         overflow = { mode = "wrap" },
