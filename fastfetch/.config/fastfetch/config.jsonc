@@ -1,9 +1,17 @@
 {
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
   "logo": {
-    "source": "/home/akshat/.config/fastfetch/KnightArtorias.art",
+    "source": "~/.config/fastfetch/KnightArtorias.art",
     "type": "auto",
   },
-  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  // Theme accent (#00ffff, same as kitty/waybar/mako)
+  "display": {
+    "color": {
+      "keys": "#00ffff",
+      "title": "#00ffff",
+    },
+  },
+  // Minimal set: only modules that print something on this machine
   "modules": [
     "title",
     "separator",
@@ -14,24 +22,13 @@
     "packages",
     "shell",
     "display",
-    "de",
     "wm",
-    "wmtheme",
-    "theme",
-    "icons",
-    "font",
-    "cursor",
     "terminal",
-    "terminalfont",
     "cpu",
     "gpu",
     "memory",
-    "swap",
     "disk",
-    "localip",
     "battery",
-    "poweradapter",
-    "locale",
     "break",
     "colors",
   ],
