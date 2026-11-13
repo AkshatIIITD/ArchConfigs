@@ -31,29 +31,27 @@ progressbar progress {
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-/* 1. Target the main track container */
+/* Segmented level bar (GTK CSS has no !important; these specific
+   selectors already override the default theme) */
 levelbar trough {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
 }
 
-/* 2. Target the exact hierarchy for filled blocks */
+/* Filled blocks */
 levelbar > trough > block.filled,
 levelbar > trough > block.low,
 levelbar > trough > block.high,
 levelbar > trough > block.full {
-  background: none !important;
-  background-color: #00ffff !important;
-  border: none !important;
-  border-radius: 999px !important;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important;
+  background: #00ffff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-/* 3. Target the exact hierarchy for empty blocks */
+/* Empty blocks */
 levelbar > trough > block.empty {
-  background: none !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: none !important;
-  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 999px;
 }
