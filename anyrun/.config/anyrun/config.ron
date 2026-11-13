@@ -1,0 +1,35 @@
+// anyrun launcher (SUPER + SPACE). Based on the defaults in /etc/anyrun/config.ron.
+// Position/size values: Absolute(px) or Fraction(of screen).
+Config(
+  // Centred horizontally, in the upper third of the screen
+  x: Fraction(0.5),
+  y: Fraction(0.3),
+  width: Absolute(600),
+  height: Absolute(1), // grows to fit results
+
+  hide_icons: false,
+  ignore_exclusive_zones: false, // respect waybar's space
+  layer: Overlay,
+  hide_plugin_info: true, // no plugin side panel: cleaner
+  close_on_click: true, // click outside to close
+  show_results_immediately: false,
+  max_entries: Some(8),
+
+  // Plugins ship in /etc/anyrun/plugins. Use absolute paths: relative ones would be
+  // looked up in ~/.config/anyrun/plugins, which doesn't exist.
+  plugins: [
+    "/etc/anyrun/plugins/libapplications.so",
+    "/etc/anyrun/plugins/libsymbols.so",
+    "/etc/anyrun/plugins/libshell.so",
+    "/etc/anyrun/plugins/libtranslate.so",
+  ],
+
+  keybinds: [
+    Keybind(key: "Return", action: Select),
+    Keybind(key: "Up", action: Up),
+    Keybind(key: "Down", action: Down),
+    Keybind(key: "ISO_Left_Tab", action: Up, shift: true),
+    Keybind(key: "Tab", action: Down),
+    Keybind(key: "Escape", action: Close),
+  ],
+)

@@ -1,0 +1,63 @@
+/* anyrun theme: desktop palette (same as waybar, mako, kitty) */
+@define-color accent #00ffff;
+@define-color bg-color rgba(15, 15, 15, 0.92);
+@define-color fg-color #ffffff;
+@define-color desc-color #888888;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+}
+
+window {
+  background: transparent;
+}
+
+box.main {
+  padding: 8px;
+  margin: 10px;
+  border-radius: 12px;
+  border: 2px solid @accent;
+  background-color: @bg-color;
+}
+
+/* Search field */
+text {
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: @fg-color;
+  caret-color: @accent;
+}
+
+.matches {
+  background-color: transparent;
+}
+
+box.plugin:first-child {
+  margin-top: 6px;
+}
+
+list.plugin {
+  background-color: transparent;
+}
+
+label.match {
+  color: @fg-color;
+}
+
+label.match.description {
+  font-size: 10px;
+  color: @desc-color;
+}
+
+.match {
+  background: transparent;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+/* Selected result: cyan bar on the left */
+.match:selected {
+  border-left: 3px solid @accent;
+  background: rgba(0, 255, 255, 0.08);
+}
