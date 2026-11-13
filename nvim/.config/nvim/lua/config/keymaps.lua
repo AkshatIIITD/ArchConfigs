@@ -26,14 +26,16 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 -- Loop to create Alt+1 through Alt+9 keymaps for tab navigation
 for i = 1, 9 do
   vim.keymap.set("n", "<M-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })
-  vim.keymap.set("x", "<", "<gv", { desc = "Indent left, keep selection" })
-  vim.keymap.set("x", ">", ">gv", { desc = "Indent right, keep selection" })
 end
 
--- ─── CLEAR SCREEN / HIGHLIGHTS ────────────────────────────────────────────────
+-- ─── INDENT ───────────────────────────────────────────────────────────────────
+vim.keymap.set("x", "<", "<gv", { desc = "Indent left, keep selection" })
+vim.keymap.set("x", ">", ">gv", { desc = "Indent right, keep selection" })
+
 -- ─── CLEAR SEARCH HIGHLIGHT ───────────────────────────────────────────────────
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
--- copy & paste
+
+-- ─── COPY & PASTE ─────────────────────────────────────────────────────────────
 vim.keymap.set({ "n", "x" }, "<Leader>y", '"+y', { silent = true, desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "x" }, "<Leader>p", '"+p', { silent = true, desc = "Paste from system clipboard" })
 vim.keymap.set({ "n", "x" }, "<Leader>d", '"+d', { silent = true, desc = "Cut to system clipboard" })

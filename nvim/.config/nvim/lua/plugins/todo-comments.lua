@@ -36,8 +36,8 @@ return {
       desc = "Todo: prev TODO/FIX",
     },
 
-    { "<leader>tq", "<cmd>TodoQuickFix<CR>", desc = "Todo: all (telescope)" },
-    { "<leader>Tq", "<cmd>TodoQuickFix keywords=TODO,FIX<CR>", desc = "Todo: TODO/FIX (telescope)" },
+    { "<leader>tq", "<cmd>TodoQuickFix<CR>", desc = "Todo: all (quickfix)" },
+    { "<leader>Tq", "<cmd>TodoQuickFix keywords=TODO,FIX<CR>", desc = "Todo: TODO/FIX (quickfix)" },
   },
   opts = {
     -- your configuration comes here

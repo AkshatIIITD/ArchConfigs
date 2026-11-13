@@ -8,6 +8,8 @@ return {
       { "<leader>w", group = "windows" },
       { "<leader>t", group = "toggle" },
       { "<leader>g", group = "git" },
+      { "<leader>h", group = "hunks" },
+      { "<leader>x", group = "trouble" },
       { "<leader>i", group = "ai" },
     },
   },
