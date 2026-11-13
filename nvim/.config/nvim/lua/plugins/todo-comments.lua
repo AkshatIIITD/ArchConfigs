@@ -3,6 +3,7 @@
 return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  event = "BufReadPost",
 
   keys = {
     -- ] / [ navigation — consistent with ]h/[h (hunks), ]d/[d (diagnostics)

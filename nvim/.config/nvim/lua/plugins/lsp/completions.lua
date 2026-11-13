@@ -1,4 +1,4 @@
--- lua/plugins/lsp/blink.lua
+-- lua/plugins/lsp/completions.lua
 return {
   {
     "saghen/blink.cmp",
@@ -23,7 +23,6 @@ return {
 
       appearance = {
         nerd_font_variant = "mono",
-        use_nvim_cmp_as_default = true,
       },
 
       completion = {

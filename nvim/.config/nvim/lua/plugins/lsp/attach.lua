@@ -33,6 +33,8 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
+    priority = 90,
     dependencies = { "saghen/blink.cmp" },
     config = function()
       -- ── 1. Global capabilities ──────────────────────────────────────────────

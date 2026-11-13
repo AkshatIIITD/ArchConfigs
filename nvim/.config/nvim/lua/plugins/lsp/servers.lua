@@ -1,6 +1,6 @@
 -- lua/plugins/lsp/servers.lua
 --
--- Two plugins. One concern: getting LSP servers installed and enabled.
+-- One plugin here (nvim-lspconfig is declared in attach.lua). One concern: getting LSP servers installed and enabled.
 --
 -- neovim/nvim-lspconfig
 --   Passive data provider only. Puts lsp/*.lua files onto runtimepath.
@@ -15,12 +15,6 @@
 --   were removed in v2.
 
 return {
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    priority = 90,
-  },
-
   {
     "mason-org/mason-lspconfig.nvim",
     lazy = false,

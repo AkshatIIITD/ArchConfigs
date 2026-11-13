@@ -32,4 +32,7 @@ return {
     event = "BufReadPost",
     config = true,
   },
+
+  -- helm-ls.nvim: filetype detection and helpers for helm charts (server: helm_ls).
+  { "qvalentin/helm-ls.nvim", ft = "helm" },
 }
