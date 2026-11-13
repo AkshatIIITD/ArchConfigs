@@ -9,7 +9,7 @@
 --   nvim-autopairs does not work with blink.cmp.
 --
 -- This doesn't matter because blink.cmp handles it natively:
---   completion.accept.auto_brackets.enabled = true in blink.lua already
+--   completion.accept.auto_brackets.enabled = true in completions.lua already
 --   inserts () after confirming a function/method completion item.
 --
 -- mini.pairs:

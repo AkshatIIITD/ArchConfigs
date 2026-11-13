@@ -1,6 +1,6 @@
 # Neovim 2026 Keymaps
 
-This document outlines the custom keymaps configured in your Neovim setup, along with the standard Neovim 0.12+ LSP keymaps.
+This document outlines the custom keymaps configured in your Neovim setup, along with the Neovim 0.12+ default LSP keymaps.
 
 ---
 
@@ -28,10 +28,16 @@ This document outlines the custom keymaps configured in your Neovim setup, along
 | `<leader><tab>`| Create new tab      |
 | `<M-1>` - `<M-9>`| Go to tab 1-9       |
 
-### Clear Screen / Highlights
+### Indent
 | Keymap        | Description                        |
 | :------------ | :--------------------------------- |
-| `<C-A-L>`     | Clear screen and search highlights |
+| `<` (`v`)     | Indent left, keep selection        |
+| `>` (`v`)     | Indent right, keep selection       |
+
+### Clear Search Highlight
+| Keymap        | Description                        |
+| :------------ | :--------------------------------- |
+| `<Esc>`       | Clear search highlight             |
 
 ### Copy & Paste
 | Keymap        | Description                       |
@@ -62,8 +68,8 @@ This document outlines the custom keymaps configured in your Neovim setup, along
 | `[t`          | Todo: prev            |
 | `]T`          | Todo: next TODO/FIX   |
 | `[T`          | Todo: prev TODO/FIX   |
-| `<leader>tq`  | Todo: all (telescope) |
-| `<leader>Tq`  | Todo: TODO/FIX (telescope) |
+| `<leader>tq`  | Todo: all (quickfix)  |
+| `<leader>Tq`  | Todo: TODO/FIX (quickfix) |
 
 ### Telescope
 | Keymap        | Description               |
@@ -93,6 +99,36 @@ This document outlines the custom keymaps configured in your Neovim setup, along
 | `<leader>fp`  | Resume last picker        |
 | `<leader>ft`  | Treesitter symbols        |
 | `<leader>fC`  | Colorschemes              |
+| `<leader>fn`  | Neovim config files       |
+
+### Flash
+| Keymap        | Description                        |
+| :------------ | :--------------------------------- |
+| `s` (`n`,`x`,`o`) | Flash jump (replaces built-in `s`)  |
+| `S` (`n`,`x`,`o`) | Flash treesitter (replaces built-in `S`) |
+
+### Mini.surround
+| Keymap        | Description                  |
+| :------------ | :--------------------------- |
+| `gsa`         | Add surrounding              |
+| `gsd`         | Delete surrounding           |
+| `gsr`         | Replace surrounding          |
+| `gsf` / `gsF` | Find surrounding (right / left) |
+| `gsh`         | Highlight surrounding        |
+| `gsn`         | Update `n_lines`             |
+
+### Undotree
+| Keymap        | Description   |
+| :------------ | :------------ |
+| `<leader>u`   | Undo tree     |
+
+### AI (CodeCompanion, only when `lua/config/ai_local.lua` exists)
+| Keymap        | Description                  |
+| :------------ | :--------------------------- |
+| `<leader>ic`  | Toggle chat                  |
+| `<leader>ia`  | Actions (`n`, `x`)           |
+| `<leader>ii`  | Inline prompt (`n`, `x`)     |
+| `<leader>is`  | Send selection to chat (`x`) |
 
 ### Trouble
 | Keymap        | Description                  |
@@ -173,20 +209,26 @@ This document outlines the custom keymaps configured in your Neovim setup, along
 
 ---
 
-## 3. Neovim 0.12+ Standard LSP Keymaps (starting with `gr`)
+## 3. LSP Keymaps (set when a server attaches)
 
-These keymaps are typically set when an LSP server is attached to a buffer.
+Neovim 0.12+ defaults (do not remap):
 
 | Keymap        | Description           |
 | :------------ | :-------------------- |
+| `K`           | Hover documentation   |
 | `grn`         | Rename symbol         |
 | `gra`         | Code action           |
 | `grr`         | References            |
 | `gri`         | Implementation        |
 | `grt`         | Type definition       |
 | `grx`         | Run codelens at cursor|
-| `grd`         | Go to Definition      |
-| `grD`         | Go to Declaration     |
-| `grt`         | Go to Type Definition |
+| `gO`          | Document symbols      |
+
+Custom, from `lua/plugins/lsp/attach.lua`:
+
+| Keymap        | Description           |
+| :------------ | :-------------------- |
+| `grd`         | Go to definition      |
+| `grD`         | Go to declaration     |
 | `<leader>cy`  | Yank line diagnostics |
 | `<leader>ch`  | Toggle inlay hints    |

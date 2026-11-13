@@ -10,19 +10,21 @@ Neovim 0.12 — `mason-org/mason.nvim` v2 + `mason-org/mason-lspconfig.nvim` v2
 ~/.config/nvim/
 ├── after/
 │   └── lsp/                        ← your server settings (override lspconfig)
-│       ├── lua_ls.lua
-│       ├── ts_ls.lua
-│       ├── gopls.lua
-│       ├── jsonls.lua
-│       └── yamlls.lua
+│       └── lua_ls.lua
+├── ftplugin/
+│   └── java.lua                    ← starts jdtls (nvim-jdtls)
 └── lua/
     └── plugins/
         └── lsp/
             ├── mason.lua           ← binary installer
-            ├── servers.lua         ← nvim-lspconfig + mason-lspconfig
-            ├── attach.lua          ← capabilities, keymaps, LspAttach
+            ├── servers.lua         ← mason-lspconfig (ensure_installed, enable)
+            ├── mason-tools.lua     ← formatters and linters
+            ├── attach.lua          ← nvim-lspconfig, capabilities, keymaps, LspAttach
+            ├── completions.lua     ← blink.cmp
+            ├── schemastore.lua     ← jsonls and yamlls schemas
+            ├── java.lua            ← nvim-jdtls
             ├── diagnostics.lua     ← tiny-inline-diagnostic
-            └── extras.lua          ← lazydev, nvim-lsp-file-operations
+            └── extras.lua          ← lazydev, nvim-lsp-file-operations, helm-ls.nvim
 ```
 
 ---
@@ -92,8 +94,9 @@ These are set globally at startup. They do nothing when no LSP is attached. **Do
 
 | Key | Action | Why not a default |
 |---|---|---|
-| `gd` | Go to definition (telescope) | Not in Neovim defaults |
-| `gD` | Go to declaration | Not in Neovim defaults |
+| `grd` | Go to definition | Not in Neovim defaults |
+| `grD` | Go to declaration | Not in Neovim defaults |
+| `<leader>cy` | Yank line diagnostics to clipboard | Not in Neovim defaults |
 | `<leader>ch` | Toggle inlay hints | Not in Neovim defaults |
 
 ---
@@ -105,14 +108,14 @@ These are set globally at startup. They do nothing when no LSP is attached. **Do
 ```lua
 ensure_installed = {
   "lua_ls",
-  "pyright",   -- add this
+  "basedpyright",   -- add this
 },
 ```
 
 **Step 2.** If you need custom settings, create `after/lsp/<server_name>.lua`:
 
 ```lua
--- after/lsp/pyright.lua
+-- after/lsp/basedpyright.lua
 ---@type vim.lsp.Config
 return {
   settings = {
@@ -161,7 +164,6 @@ Check server status and enabled configurations:
 
 ```
 :checkhealth vim.lsp
-:LspInfo
 :lua print(vim.inspect(vim.lsp.get_clients()))
 ```
 
@@ -187,7 +189,6 @@ The following are deliberate omissions — they require non-trivial extra config
 | Feature | How to add |
 |---|---|
 | Rust (enhanced) | Replace `rust_analyzer` entry with `mrcjkb/rustaceanvim` |
-| Java | `nvim-jdtls` — jdtls requires special per-project setup |
 | Vue (Volar + ts_ls) | See mason-lspconfig Vue hybrid mode docs |
 | Per-project server config | `.nvim.lua` in project root with `vim.lsp.config()` call |
-| Python with ruff LSP | Add `ruff` to `ensure_installed`, disable pyright diagnostics |
+| Python with ruff LSP | Add `ruff` to `ensure_installed`, disable basedpyright diagnostics (ruff currently runs through nvim-lint and conform) |

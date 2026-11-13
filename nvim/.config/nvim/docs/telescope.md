@@ -19,7 +19,7 @@ Telescope relies on external tools for efficient searching. By default, manual c
 ## 4. Architecture Notes
 
 ### LSP Keybindings Distribution
-- **Navigation Overrides (gd, gr, gI, gy):** These override default Vim motions. They belong in the `LspAttach` autocommand within the LSP configuration (`lsp.lua`) and should only activate when an LSP is actively attached to the buffer.
+- **Navigation maps (`grd`, `grD`):** These are plain `vim.lsp.buf` calls set in the `LspAttach` autocommand in `lua/plugins/lsp/attach.lua`, so they only exist when an LSP is attached to the buffer.
 - **Deliberate Actions (<leader>fs, <leader>fd):** Explicit Telescope picker invocations belong in the Telescope configuration.
 
 ### UI Select (telescope-ui-select)

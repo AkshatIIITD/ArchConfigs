@@ -85,8 +85,8 @@ return {
 
       -- ── LSP pickers (deliberate actions, NOT motion overrides) ────────────────
       -- These are "open a picker" keymaps that the user explicitly invokes.
-      -- gd / gr / gI / gy are NOT here — those override vim defaults and must
-      -- only activate when LSP is attached. Set them in LspAttach in attach.lua.
+      -- grd / grD are NOT here — they only activate when LSP is attached.
+      -- Set them in LspAttach in lua/plugins/lsp/attach.lua.
       {
         "<leader>fs",
         b("lsp_document_symbols"),

@@ -18,8 +18,9 @@
 --
 -- ─── WHAT THIS FILE ADDS ──────────────────────────────────────────────────────
 --
---   grd             → go to definition (telescope picker)
+--   grd             → go to definition
 --   grD             → go to declaration
+--   <leader>cy     → yank line diagnostics to clipboard
 --   <leader>ch     → toggle inlay hints
 --
 --   Per-server, checked with supports_method():
