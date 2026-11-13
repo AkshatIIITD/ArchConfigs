@@ -4,8 +4,9 @@ window {
 
 /* The main pill container */
 #osd {
-  background-color: rgba(15, 15, 15, 0.8);
-  border: 2px solid rgba(0, 255, 255, 0.4);
+  /* Same opacity as the waybar pills */
+  background-color: rgba(15, 15, 15, 0.7);
+  border: 2px solid rgba(0, 255, 255, 0.3);
   border-radius: 999px;
   padding: 12px 24px;
   margin-bottom: 40px; /* Floats it nicely above the bottom edge */
