@@ -27,7 +27,11 @@
     "cpu",
     "gpu",
     "memory",
-    "disk",
+    // Only system disks; hides the external HDD (its mount path shows the username)
+    {
+      "type": "disk",
+      "folders": "/:/home",
+    },
     "battery",
     "break",
     "colors",
