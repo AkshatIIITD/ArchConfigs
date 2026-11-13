@@ -3,7 +3,7 @@
 -- mason-tool-installer.nvim
 -- Automatically installs formatting and linting binaries.
 -- Because mason-lspconfig strictly handles Language Servers, this plugin
--- is required to ensure tools like prettierd and eslint_d are installed.
+-- is required to ensure tools like prettier and eslint_d are installed.
 
 return {
   {
@@ -13,19 +13,16 @@ return {
     priority = 70,
     opts = {
       ensure_installed = {
-        -- ── Formatters (from conform.lua) ─────────────────────────────
+        -- ── Formatters (from format.lua) ──────────────────────────────
         "stylua", -- Lua
-        "prettierd", -- Web, JSON, Markdown, YAML
-        "prettier", -- Web (Fallback)
-        "isort", -- Python imports
-        "black", -- Python
+        "prettier", -- Web, JSON, Markdown, YAML
         "goimports", -- Go
         "shfmt", -- Shell/Bash
         "clang-format", -- C/C++
 
         -- ── Linters (from lint.lua) ───────────────────────────────────
         "eslint_d", -- JS/TS/Vue/Svelte
-        "ruff", -- Python
+        "ruff", -- Python (linter and formatter)
         "golangci-lint", -- Go
         "shellcheck", -- Shell/Bash
         "markdownlint", -- Markdown
