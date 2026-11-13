@@ -15,6 +15,12 @@ The Hyprland config (`hypr/.config/hypr/hyprland.lua`) also expects:
 - `anyrun` as the launcher
 - `grim`, `slurp`, `wl-clipboard`, `hyprpicker`, `playerctl`, `swayosd`
 
+## Wallpapers
+
+Wallpaper images are not stored in this repo. Put them in `~/Pictures/Wallpapers`
+(png, jpg, jpeg or webp). hyprpaper shows one at login, `scripts/wallpaper.sh`
+switches to a random one every 30 minutes, and SUPER + W switches immediately.
+
 ## Keybinds
 
 SUPER is the main modifier. Keep this table in sync with `hyprland.lua`.
@@ -29,6 +35,7 @@ SUPER is the main modifier. Keep this table in sync with `hyprland.lua`.
 | SUPER + SPACE | Launcher (anyrun) |
 | Print | Screenshot a region to the clipboard |
 | SUPER + SHIFT + C | Colour picker (hyprpicker) |
+| SUPER + W | Next random wallpaper |
 
 ### Windows
 | Keys | Action |

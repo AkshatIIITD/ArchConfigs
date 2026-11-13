@@ -157,6 +157,9 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(notion))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
 
+-- Next random wallpaper (see scripts/wallpaper.sh)
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper.sh"))
+
 -- Screenshot (region to clipboard) and colour picker
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd("hyprpicker -a"))
