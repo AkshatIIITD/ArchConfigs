@@ -277,10 +277,12 @@ hl.window_rule({
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 -- Notifications, wallpaper, idle/lock daemon, bar, volume/brightness OSD,
--- launcher daemon (faster SUPER+SPACE and clipboard support for anyrun)
+-- launcher daemon (faster SUPER+SPACE and clipboard support for anyrun),
+-- wallpaper rotation every 30 min
 hl.on("hyprland.start", function()
 	hl.exec_cmd("mako")
 	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("~/.config/hypr/scripts/wallpaper.sh --loop")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("swayosd-server")
