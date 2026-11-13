@@ -59,9 +59,10 @@ hl.config({
 		gaps_in = 5,
 		gaps_out = 20,
 		border_size = 2,
+		-- Theme accent cyan, same as waybar/mako/kitty
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-			inactive_border = "rgba(595959aa)",
+			active_border = "rgba(00ffffee)",
+			inactive_border = "rgba(333333aa)",
 		},
 		resize_on_border = false, -- true = resize windows by dragging borders/gaps
 		allow_tearing = false, -- see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ first
