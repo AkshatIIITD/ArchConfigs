@@ -6,7 +6,7 @@ return {
   event = "VeryLazy",
   opts = {
     options = {
-      theme = "auto",
+      theme = "desktop",
       globalstatus = true, -- single statusline for all windows
       icons_enabled = true,
       component_separators = { left = "", right = "" },

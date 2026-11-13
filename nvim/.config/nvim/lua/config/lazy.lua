@@ -22,7 +22,7 @@ require("lazy").setup({
     { import = "plugins.lsp" },
     { import = "plugins.git" },
   },
-  install = { colorscheme = { "habamax" } },
+  install = { colorscheme = { "desktop" } },
   checker = { enabled = false },
   change_detection = { notify = false },
   rocks = { enabled = false },
@@ -30,3 +30,5 @@ require("lazy").setup({
     rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } },
   },
 })
+
+vim.cmd.colorscheme("desktop")
