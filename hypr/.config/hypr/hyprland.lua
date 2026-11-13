@@ -275,11 +275,13 @@ hl.window_rule({
 -------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
--- Notifications, wallpaper, idle/lock daemon, bar, volume/brightness OSD
+-- Notifications, wallpaper, idle/lock daemon, bar, volume/brightness OSD,
+-- launcher daemon (faster SUPER+SPACE and clipboard support for anyrun)
 hl.on("hyprland.start", function()
 	hl.exec_cmd("mako")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("swayosd-server")
+	hl.exec_cmd("anyrun daemon")
 end)
