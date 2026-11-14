@@ -101,8 +101,31 @@ local function minuet_opts()
       end,
     },
     virtualtext = {
-      auto_trigger_ft = cfg.complete_auto and { "*" } or {},
-      auto_trigger_ignore_ft = { "oil", "gitcommit", "markdown" },
+      -- Allowlist: buffer context is sent to the remote host only for these code
+      -- filetypes. Config/data files (yaml, json, toml, dockerfile, sql, env) are
+      -- left out because they are the likeliest to hold credentials.
+      -- Override with `complete_filetypes = { ... }` in ai_local.lua.
+      auto_trigger_ft = cfg.complete_auto
+          and (cfg.complete_filetypes or {
+            "lua",
+            "python",
+            "go",
+            "rust",
+            "java",
+            "c",
+            "cpp",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "html",
+            "css",
+            "scss",
+            "sh",
+            "bash",
+          })
+        or {},
       keymap = {
         accept = "<A-A>",
         accept_line = "<A-a>",
