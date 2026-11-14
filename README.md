@@ -8,7 +8,10 @@ is symlinked to `~/.config/hypr/hyprland.lua`, so editing a file here changes th
 
 ![Neovim in tmux with the desktop colourscheme](.github/screenshots/nvim.jpg)
 
-Wallpapers rotate from `~/Pictures/Wallpapers` and are not part of this repo.
+![anyrun launcher over tiled windows](.github/screenshots/launcher.jpg)
+
+Wallpapers rotate from `~/Pictures/Wallpapers` and are not part of this repo. The ones in the
+screenshots come from [D3Ext/aesthetic-wallpapers](https://github.com/D3Ext/aesthetic-wallpapers) (MIT licence).
 
 ## Tested on
 
