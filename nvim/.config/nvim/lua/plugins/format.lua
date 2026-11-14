@@ -66,6 +66,9 @@ return {
         -- Python: ruff sorts imports first, then formats (one binary, no black/isort)
         python = { "ruff_organize_imports", "ruff_format" },
 
+        toml = { "taplo" }, -- binary comes with the taplo language server (servers.lua)
+        sql = { "sqlfluff" }, -- only when a .sqlfluff exists (see formatters below)
+
         go = { "goimports" }, -- gofmt + import organisation
         rust = { "rustfmt" }, -- from the Rust toolchain, not mason
         sh = { "shfmt" },
@@ -104,6 +107,13 @@ return {
       formatters = {
         stylua = { prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" } },
         shfmt = { prepend_args = { "-i", "2" } },
+
+        -- sqlfluff errors without a dialect, so only format when the project sets one.
+        sqlfluff = {
+          condition = function(_, ctx)
+            return vim.fs.root(ctx.dirname, ".sqlfluff") ~= nil
+          end,
+        },
       },
     },
   },

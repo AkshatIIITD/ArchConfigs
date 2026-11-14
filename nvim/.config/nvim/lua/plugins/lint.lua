@@ -33,6 +33,9 @@ local guards = {
     "eslint.config.mts",
   },
 
+  -- sqlfluff errors without a dialect, which lives in .sqlfluff.
+  sqlfluff = { ".sqlfluff" },
+
   -- golangci-lint without config runs every default analyzer, which is very slow.
   golangcilint = { ".golangci.yaml", ".golangci.yml", ".golangci.toml", ".golangci.json" },
 }
@@ -80,6 +83,7 @@ return {
         markdown = { "markdownlint" },
         dockerfile = { "hadolint" },
         yaml = { "yamllint" },
+        sql = { "sqlfluff" },
       }
 
       local function trigger_lint(args)
@@ -90,12 +94,20 @@ return {
           return
         end
 
-        local names = {}
-        for _, name in ipairs(lint.linters_by_ft[vim.bo[bufnr].filetype] or {}) do
-          local patterns = guards[name]
-          local on_insert_leave = args and args.event == "InsertLeave"
-          if (not patterns or vim.fs.root(bufnr, patterns)) and not (on_insert_leave and file_only[name]) then
-            table.insert(names, name)
+        -- Compound filetypes such as "yaml.docker-compose" use the linters of each part.
+        local on_insert_leave = args and args.event == "InsertLeave"
+        local names, seen = {}, {}
+        for part in vim.bo[bufnr].filetype:gmatch("[^.]+") do
+          for _, name in ipairs(lint.linters_by_ft[part] or {}) do
+            local patterns = guards[name]
+            if
+              not seen[name]
+              and (not patterns or vim.fs.root(bufnr, patterns))
+              and not (on_insert_leave and file_only[name])
+            then
+              seen[name] = true
+              table.insert(names, name)
+            end
           end
         end
 

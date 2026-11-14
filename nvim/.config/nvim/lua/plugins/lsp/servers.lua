@@ -44,6 +44,7 @@ return {
         -- Data formats
         "jsonls",
         "yamlls",
+        "taplo", -- TOML: diagnostics, schemas, and the taplo formatter used by conform
         "marksman",
         "dockerls",
         "docker_compose_language_service",

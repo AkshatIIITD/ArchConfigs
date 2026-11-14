@@ -18,6 +18,7 @@ return {
         "prettier", -- Web, JSON, Markdown, YAML
         "goimports", -- Go
         "shfmt", -- Shell/Bash
+        "sqlfluff", -- SQL (formatter and linter; needs a .sqlfluff with a dialect)
         "clang-format", -- C/C++
 
         -- ── Linters (from lint.lua) ───────────────────────────────────
