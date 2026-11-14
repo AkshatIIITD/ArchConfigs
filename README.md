@@ -171,3 +171,8 @@ SUPER is the main modifier. Keep this table in sync with `hyprland.lua`.
 | Brightness Up / Down | Brightness ±; hold to repeat |
 | Play / Pause | Play/pause |
 | Next / Prev | Next / previous track |
+
+## License
+
+[MIT](LICENSE). The wallpapers shown in the screenshots are from
+[D3Ext/aesthetic-wallpapers](https://github.com/D3Ext/aesthetic-wallpapers) and are not part of this repo.
