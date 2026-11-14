@@ -4,6 +4,22 @@ Dotfiles for an Arch Linux + Hyprland (Wayland) desktop, managed with [GNU Stow]
 Each top-level folder is a Stow package that mirrors `$HOME`: `hypr/.config/hypr/hyprland.lua`
 is symlinked to `~/.config/hypr/hyprland.lua`, so editing a file here changes the live desktop.
 
+![Desktop: waybar, kitty running fastfetch, starship prompt](.github/screenshots/desktop.jpg)
+
+![Neovim in tmux with the desktop colourscheme](.github/screenshots/nvim.jpg)
+
+Wallpapers rotate from `~/Pictures/Wallpapers` and are not part of this repo.
+
+## Tested on
+
+- Arch Linux (rolling) with Hyprland 0.57 and its Lua config
+- Dell G3 3500 laptop: 15.6" 1920×1080 120 Hz panel at 1.5× scale
+- Hybrid graphics: Intel UHD (integrated) + NVIDIA GTX 1650 (an external screen over HDMI needs the NVIDIA driver)
+- External 2560×1440 screen over HDMI, placed automatically by the fallback monitor rule
+
+Monitor names, scale and the laptop media/brightness keys in `hyprland.lua` are specific to this machine;
+adjust the MONITORS group for yours.
+
 ## Install
 
 Clone the repository, then in its base folder do a dry run first and check the output:
