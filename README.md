@@ -103,11 +103,21 @@ Needed outside Neovim:
 
 - `tree-sitter-cli` and `base-devel` (gcc, make), for treesitter parsers and telescope-fzf-native
 - `ripgrep` and `fd` for telescope; `bat` is optional
-- `nodejs` and `npm` (mise provides Node), `python` with `pip` or `uv`, `go`, `rustup` with `rustfmt`, and a JDK 21 or newer, because Mason builds or runs many tools with these
+- `nodejs` and `npm` (mise provides Node), `python` with `pip` or `uv`, `go`, `rustup` with `rustfmt`, and a JDK 21, because Mason builds or runs many tools with these
 - `wl-clipboard` for the system clipboard
 
 Mason installs the language servers, formatters and linters on first start (taplo, sqlfluff, prettier,
 ruff, hadolint and others). SQL formatting and linting only run in projects that have a `.sqlfluff` file with a dialect.
+
+jdtls (Java) is not installed by Mason. jdtls 1.63 and newer need Java 25, and Mason cannot pin an older
+version, so it is pinned to 1.61.0 (works on Java 21) and installed by a script instead. Run it once per machine:
+
+```
+bash ~/.config/nvim/scripts/install-jdtls.sh
+```
+
+It downloads the Eclipse milestone, verifies its SHA-256 and installs into `~/.local/share/nvim/jdtls/1.61.0`.
+To move to a newer jdtls after upgrading Java, change the version, build and checksum in the script and `JDTLS_VERSION` in `ftplugin/java.lua`.
 
 Optional AI completion (CodeCompanion and minuet) is off unless `lua/config/ai_local.lua` exists.
 That file is gitignored because it holds your LLM host and settings, so create it on each machine.

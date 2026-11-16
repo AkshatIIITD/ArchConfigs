@@ -101,6 +101,22 @@ These are set globally at startup. They do nothing when no LSP is attached. **Do
 
 ---
 
+## Java (jdtls)
+
+jdtls is started by `ftplugin/java.lua` through nvim-jdtls and is **not** managed by Mason.
+Versions 1.63 and newer need Java 25, and Mason cannot pin an older one (its registry URL has a
+build timestamp baked in, so `jdtls@1.61.0` does not resolve). It is pinned to 1.61.0, which runs on Java 21:
+
+```
+bash ~/.config/nvim/scripts/install-jdtls.sh
+```
+
+This installs to `~/.local/share/nvim/jdtls/1.61.0` after verifying a SHA-256. To change version, edit
+`VERSION`, `BUILD` and `SHA256` in the script and `JDTLS_VERSION` in `ftplugin/java.lua`.
+If workspaces created by a newer jdtls misbehave after a downgrade, delete `~/.cache/nvim/jdtls/workspace/`.
+
+---
+
 ## Adding a language server
 
 **Step 1.** Add the server name to `ensure_installed` in `lua/plugins/lsp/servers.lua`:
