@@ -6,13 +6,16 @@ if not ok then
 end
 
 -- ── Paths ──────────────────────────────────────────────────────────────────
-local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+-- jdtls is pinned outside Mason (1.63+ needs Java 25; this setup runs Java 21).
+-- Keep JDTLS_VERSION in sync with VERSION in scripts/install-jdtls.sh.
+local JDTLS_VERSION = "1.61.0"
+local jdtls_path = vim.fn.stdpath("data") .. "/jdtls/" .. JDTLS_VERSION
 
 local launcher_list = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, true)
 local launcher = launcher_list[1]
 if not launcher then
   vim.notify(
-    "jdtls launcher jar not found — is jdtls installed via Mason?",
+    "jdtls " .. JDTLS_VERSION .. " not found. Run: bash " .. vim.fn.stdpath("config") .. "/scripts/install-jdtls.sh",
     vim.log.levels.WARN,
     { title = "nvim-jdtls" }
   )

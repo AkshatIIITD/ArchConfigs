@@ -53,8 +53,8 @@ return {
         "basedpyright",
         "gopls",
 
-        -- Java
-        "jdtls",
+        -- Java: jdtls is NOT installed by Mason. It is pinned to 1.61.0 (Java 21)
+        -- by scripts/install-jdtls.sh and started from ftplugin/java.lua.
       },
 
       -- Calls vim.lsp.enable() for every installed server automatically.
