@@ -100,6 +100,8 @@ Then paste `~/.local/state/theme/windows-terminal.json` into the `schemes` list 
 `settings.json` and select it for the WSL profile, since the terminal background comes from Windows.
 Needs `tmux` 3.2+, `starship`, `fastfetch`, `neovim` 0.11+ and a Nerd Font set in Windows Terminal.
 In tmux copy mode, `y` copies to the Windows clipboard through `clip.exe`.
+tmux reads its config only when the server starts, so run `tmux kill-server` after stowing or after `apply`
+(prefix + r is enough for later edits).
 
 ## System packages
 
