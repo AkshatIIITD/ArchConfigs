@@ -15,6 +15,9 @@ shopt -s histappend              # append instead of overwriting across terminal
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
+# --- Theme: starship/fastfetch use this machine's palette (~/.config/theme) ---
+[ -f ~/.config/theme/shell.sh ] && . ~/.config/theme/shell.sh
+
 # --- Prompt: starship, with a plain fallback if it isn't installed ---
 PS1='[\u@\h \W]\$ '
 command -v starship >/dev/null && eval "$(starship init bash)"
