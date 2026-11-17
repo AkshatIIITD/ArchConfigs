@@ -4,7 +4,7 @@
     "source": "~/.config/fastfetch/KnightArtorias.art",
     "type": "auto",
   },
-  // Theme accent (#00ffff, same as kitty/waybar/mako)
+  // Desktop accent; ~/.config/theme/apply makes a copy with another one
   "display": {
     "color": {
       "keys": "#00ffff",

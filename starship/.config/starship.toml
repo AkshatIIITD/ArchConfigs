@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Desktop palette (same as kitty, waybar, mako, tmux):
+# Desktop palette below; ~/.config/theme/apply makes a copy with another one.
 # [cyan: os + user] -> [dark: folder, git, language] -> [cyan: clock] -> prompt char
 format = """
 [](accent)\
