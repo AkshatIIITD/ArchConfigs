@@ -1,15 +1,7 @@
 -- lua/lualine/themes/desktop.lua
--- Desktop palette: cyan mode block, #333333 middle, bg elsewhere.
+-- Accent mode block, surface middle, bg elsewhere (lua/config/palette.lua).
 
-local c = {
-  bg = "#0f0f0f",
-  fg = "#ffffff",
-  accent = "#00ffff",
-  muted = "#888888",
-  surface = "#333333",
-  warn = "#ffaa00",
-  crit = "#ff3333",
-}
+local c = require("config.palette")
 
 local function mode(color)
   return {
