@@ -28,7 +28,7 @@ adjust the MONITORS group for yours.
 Clone the repository, then in its base folder do a dry run first and check the output:
 
 ```
-stow -n -v -t ~ anyrun fastfetch hypr kitty mako swayosd waybar misc nvim
+stow -n -v -t ~ anyrun fastfetch hypr kitty mako swayosd waybar misc nvim theme tmux starship
 ```
 
 If it reports no conflicts, run the same command without `-n`. Move away any existing file
@@ -46,23 +46,60 @@ it complains about instead of using `--adopt`, which overwrites the repo with yo
 | `kitty` | Terminal |
 | `fastfetch` | System info |
 | `nvim` | Neovim (see below) |
-| `misc` | `.bashrc`, `.bash_profile`, starship prompt, tmux, mise, pavucontrol, YouTube Music flags |
+| `theme` | Shared palettes and the `apply` script (see below) |
+| `tmux` | tmux (colours in `theme.conf`) |
+| `starship` | Prompt |
+| `misc` | `.bashrc`, `.bash_profile`, mise, pavucontrol, YouTube Music flags |
 
 ## Theme
 
-Every themed app uses the same palette and font, so reuse these values instead of adding new ones.
+Every themed app uses the same palette roles and font, so reuse these values instead of adding new ones.
 
-| Role | Value |
-|---|---|
-| Background | `#0f0f0f` (pills and OSD use alpha 0.7) |
-| Foreground | `#ffffff` |
-| Accent | `#00ffff` (pill and OSD borders use `rgba(0,255,255,0.3)`) |
-| Muted | `#888888` |
-| Surface | `#333333` (inactive borders, prompt middle block, tmux inactive pane) |
-| Warning | `#ffaa00` |
-| Critical | `#ff3333` |
+| Role | `desktop` (Arch laptop) | `graphite` (work, WSL) |
+|---|---|---|
+| Background | `#0f0f0f` (pills and OSD use alpha 0.7) | `#1c1d20` |
+| Foreground | `#ffffff` | `#d8dadd` |
+| Accent | `#00ffff` (pill and OSD borders use `rgba(0,255,255,0.3)`) | `#c3ccd6` |
+| Muted | `#888888` | `#868a91` |
+| Surface | `#333333` (inactive borders, prompt middle block, tmux inactive pane) | `#34363b` |
+| Warning | `#ffaa00` | `#e0a458` |
+| Critical | `#ff3333` | `#e06c6c` |
 
-Font: JetBrainsMono Nerd Font. Neovim uses it through `colors/desktop.lua` and a matching lualine theme.
+Font: JetBrainsMono Nerd Font.
+
+### Palettes
+
+The palettes live in `theme/.config/theme/palettes/*.sh`. Neovim, tmux, starship and fastfetch
+read them; the Hyprland desktop apps (waybar, mako, kitty, …) still use the desktop values directly.
+Without any setup every machine gets `desktop`. To pick another one:
+
+```
+~/.config/theme/apply            # list palettes and show the current one
+~/.config/theme/apply graphite   # pick graphite for this machine
+```
+
+`apply` writes to `~/.local/state/theme/` (outside the repo):
+
+- `palette.sh`: read directly by tmux (`tmux/.config/tmux/theme.conf`) and Neovim (`lua/config/palette.lua`)
+- `starship.toml` and `fastfetch.jsonc`: copies of the stowed configs with the palette swapped in.
+  `theme/.config/theme/shell.sh` (sourced from `.bashrc`) points `STARSHIP_CONFIG` and `fastfetch` at them.
+  Run `apply` again after editing `starship.toml` or the fastfetch config.
+- `windows-terminal.json`: a colour scheme for Windows Terminal
+
+### WSL / other machines
+
+Stow only the shell tools, without the Arch `.bashrc`:
+
+```
+stow -n -v -t ~ theme tmux starship nvim fastfetch   # dry run, then without -n
+~/.config/theme/apply graphite
+echo '[ -f ~/.config/theme/shell.sh ] && . ~/.config/theme/shell.sh' >> ~/.bashrc
+```
+
+Then paste `~/.local/state/theme/windows-terminal.json` into the `schemes` list of Windows Terminal's
+`settings.json` and select it for the WSL profile, since the terminal background comes from Windows.
+Needs `tmux` 3.2+, `starship`, `fastfetch`, `neovim` 0.11+ and a Nerd Font set in Windows Terminal.
+In tmux copy mode, `y` copies to the Windows clipboard through `clip.exe`.
 
 ## System packages
 
@@ -90,7 +127,7 @@ The lock screen shows the current wallpaper.
 
 ## Shell
 
-`misc/.bash_profile` loads `~/.bashrc`, which starts starship (plain prompt if it is not installed)
+`misc/.bash_profile` loads `~/.bashrc`, which loads the theme hook, starts starship (plain prompt if it is not installed)
 and activates mise. mise pins Node 22 in `misc/.config/mise/config.toml`.
 
 ## Neovim
